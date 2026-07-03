@@ -31,6 +31,12 @@ class User extends Authenticatable
         ];
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('name', 'like', '%' . $search . '%')
+            ->orwhere('email', 'like', '%' . $search . '%');;
+    }
+
     //user can have one store relationship
     public function store()
     {
